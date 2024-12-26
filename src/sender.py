@@ -20,6 +20,7 @@ def find_sidebar(driver):
         
 def send_message(driver, link, phone, logs):
     driver.get(link)
+    # time.sleep(3)
     try:
         element = WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.XPATH, "//button[@aria-label=\"Send\"]"))
