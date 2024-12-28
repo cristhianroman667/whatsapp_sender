@@ -18,18 +18,18 @@ def find_sidebar(driver):
         driver.quit()
         
         
-def send_message(driver, link, phone, logs):
+def send_message(driver, link, phone):
     driver.get(link)
-    # time.sleep(3)
     try:
         element = WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.XPATH, "//button[@aria-label=\"Send\"]"))
         )
         element.click()
-        time.sleep(3)
-        logs += 1
+        time.sleep(5)
+        return True
 
     except:
         print("\tNo enviado %d" % phone)
+        return False
 
-    return logs
+    # return logs

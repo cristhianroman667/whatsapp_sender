@@ -10,9 +10,10 @@ def _print_columns(columns):
         if basic not in columns:
             raise ValueError("There is no '%s' column" % basic)
 
-    print("You have the following columns:\n\t", list(columns))
+    # print("You have the following columns:\n\t", list(columns))
+    return list(columns)
 
-def message(row, text):
+def message(row, text, url=True):
     pattern = r'\$\{([0-9a-z]{1,})\}'
     
     while re.search(pattern, text):
@@ -22,7 +23,10 @@ def message(row, text):
         
         text = re.sub(pattern, row[col], text, count=1)
         
-    return urllib.parse.quote(text)
+    if url:
+        return urllib.parse.quote(text)
+    else:
+        return text
 
 def read_csv(filename):
     df = pd.read_csv(filename)
